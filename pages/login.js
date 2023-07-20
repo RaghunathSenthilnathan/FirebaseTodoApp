@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-
 import { auth } from "../firebase/firebase";
 import {
     signInWithEmailAndPassword,
@@ -18,14 +17,9 @@ const LoginForm = () => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const { authUser, isLoading } = useAuth();
-
     const router = useRouter();
 
-    useEffect(() => {
-        if (!isLoading && authUser) {
-            router.push("/");
-        }
-    }, [authUser, isLoading]);
+
 
     const loginHandler = async () => {
         if (!email || !password) return;
@@ -50,6 +44,11 @@ const LoginForm = () => {
             console.error("An error occured", error);
         }
     };
+    useEffect(() => {
+        if (!isLoading && authUser) {
+            router.push("/");
+        }
+    }, [authUser, isLoading, router]);
 
     return isLoading || (!isLoading && authUser) ? (
         <Loader />

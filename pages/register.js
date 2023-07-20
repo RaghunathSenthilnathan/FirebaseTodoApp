@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
-
 import { auth } from "../firebase/firebase";
 import {
     createUserWithEmailAndPassword,
@@ -8,9 +7,9 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
-import { useAuth } from "@/firebase/auth";
+import { useAuth } from "../firebase/auth";
 import { useRouter } from "next/router";
-import Loader from "@/components/Loader";
+import Loader from "../components/Loader";
 import Link from "next/link";
 const provider = new GoogleAuthProvider();
 
@@ -21,12 +20,6 @@ const RegisterForm = () => {
     const { authUser, isLoading, setAuthUser } = useAuth();
 
     const router = useRouter();
-
-    useEffect(() => {
-        if (!isLoading && authUser) {
-            router.push("/");
-        }
-    }, [authUser, isLoading]);
 
     const signupHandler = async () => {
         if (!email || !username || !password) return;
@@ -59,6 +52,14 @@ const RegisterForm = () => {
             console.error("An error occured", error);
         }
     };
+
+    
+    useEffect(() => {
+        if (!isLoading && authUser) {
+            router.push("/");
+        }
+    }, [authUser, isLoading, router]);
+
 
     return isLoading || (!isLoading && authUser) ? (
         <Loader />

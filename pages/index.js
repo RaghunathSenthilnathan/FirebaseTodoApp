@@ -1,13 +1,9 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import { GoSignOut } from "react-icons/go";
-const arr = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-];
-
-import { useAuth } from "@/firebase/auth";
+import { useAuth } from "../firebase/auth";
 import { useRouter } from "next/router";
-import Loader from "@/components/Loader";
+import Loader from "../components/Loader";
 import { useEffect, useState } from "react";
 import {
     collection,
@@ -28,14 +24,7 @@ export default function Home() {
 
     const router = useRouter();
 
-    useEffect(() => {
-        if (!isLoading && !authUser) {
-            router.push("/login");
-        }
-        if (!!authUser) {
-            fetchTodos(authUser.uid);
-        }
-    }, [authUser, isLoading]);
+  
 
     const addToDo = async () => {
         try {
@@ -94,6 +83,15 @@ export default function Home() {
             addToDo();
         }
     };
+
+    useEffect(() => {
+        if (!isLoading && !authUser) {
+            router.push("/login");
+        }
+        if (!!authUser) {
+            fetchTodos(authUser.uid);
+        }
+    }, [authUser, isLoading]);
 
     return !authUser ? (
         <Loader />
