@@ -91,7 +91,7 @@ export default function Home() {
         if (!!authUser) {
             fetchTodos(authUser.uid);
         }
-    }, [authUser, isLoading]);
+    }, [authUser, isLoading, router]);
 
     return !authUser ? (
         <Loader />
