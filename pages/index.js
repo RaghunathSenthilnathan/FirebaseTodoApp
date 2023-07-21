@@ -35,7 +35,7 @@ export default function Home() {
             });
             console.log("Document written with ID: ", docRef.id);
 
-            fetchTodos(authUser.uid);
+            fetchTodos(authUser?.uid);
             setTodoInput("");
         } catch (error) {
             console.error(error);
@@ -45,7 +45,7 @@ export default function Home() {
     const deleteTodo = async (docId) => {
         try {
             await deleteDoc(doc(db, "todos", docId));
-            fetchTodos(authUser.uid);
+            fetchTodos(authUser?.uid);
         } catch (error) {
             console.error(error);
         }
@@ -72,7 +72,7 @@ export default function Home() {
             await updateDoc(docRef, {
                 completed: event.target.checked,
             });
-            fetchTodos(authUser.uid);
+            fetchTodos(authUser?.uid);
         } catch (error) {
             console.error(error);
         }
@@ -88,8 +88,8 @@ export default function Home() {
         if (!isLoading && !authUser) {
             router.push("/login");
         }
-        if (!!authUser) {
-            fetchTodos(authUser.uid);
+        if (!authUser) {
+            fetchTodos(authUser?.uid);
         }
     }, [authUser, isLoading, router]);
 

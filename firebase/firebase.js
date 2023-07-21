@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
-    apiKey: "AIzaSyDuIVtMMmIKM6wU0YBlsfKPxhUQ2bdYb50",
-    authDomain: "fir-todo-app-a6bf1.firebaseapp.com",
-    projectId: "fir-todo-app-a6bf1",
-    storageBucket: "fir-todo-app-a6bf1.appspot.com",
-    messagingSenderId: "108965007626",
-    appId: "1:108965007626:web:cd71a0114446703500aaf3",
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGE_SENDER,
+    appId: process.env.NEXT_PUBLIC_APPID,
 };
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
