@@ -38,7 +38,7 @@ const RegisterForm = () => {
                 username,
             });
 
-            console.log(user);
+            // console.log(user);
         } catch (error) {
             console.error("An error occured", error);
         }
@@ -47,7 +47,7 @@ const RegisterForm = () => {
     const signInWithGoogle = async () => {
         try {
             const user = await signInWithPopup(auth, provider);
-            console.log(user);
+            // console.log(user);
         } catch (error) {
             console.error("An error occured", error);
         }
