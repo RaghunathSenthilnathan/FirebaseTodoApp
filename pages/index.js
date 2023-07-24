@@ -21,7 +21,6 @@ export default function Home() {
     const [todoInput, setTodoInput] = useState("");
     const [todos, setTodos] = useState([]);
     const { authUser, isLoading, signOut } = useAuth();
-
     const router = useRouter();
 
   
@@ -33,7 +32,7 @@ export default function Home() {
                 content: todoInput,
                 completed: false,
             });
-            console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
 
             fetchTodos(authUser?.uid);
             setTodoInput("");
@@ -57,7 +56,7 @@ export default function Home() {
             const querySnapshot = await getDocs(q);
             let data = [];
             querySnapshot.forEach((doc) => {
-                console.log(doc.id, " => ", doc.data());
+                // console.log(doc.id, " => ", doc.data());
                 data.push({ ...doc.data(), id: doc.id });
             });
             setTodos(data);
